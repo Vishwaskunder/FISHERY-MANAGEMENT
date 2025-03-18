@@ -1,0 +1,93 @@
+{% extends "admin_dashboard.html" %}
+{% block body %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Fish Details</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            position: relative; /* Add this to make the positioning of the error messages relative to the body */
+        }
+        form {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 500px;
+            max-width: 90%;
+            position: relative; /* Add this to make the positioning of the error messages relative to the form */
+        }
+        label {
+            display: block;
+            margin-bottom: 10px;
+        }
+        input[type="text"],
+        input[type="number"] {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+        form button {
+            background-color: #58e3ce;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+            display: block;
+        }
+        .error-message {
+            color: #f44336;
+            position: absolute; /* Position the error messages absolutely */
+            top: 0; /* Position them at the top of the form */
+            left: 0; /* Position them at the left of the form */
+            width: 100%; /* Make them take the full width of the form */
+            text-align: center; /* Center the text */
+            padding: 10px 0; /* Add some padding for better readability */
+        }
+        @media only screen and (max-width: 600px) {
+            form {
+                width: 90%;
+            }
+        }
+    </style>
+</head>
+<body>
+   <div class="fish">
+    <form method="POST">
+        {% csrf_token %}
+        <h2>Add Fish Details</h2> 
+
+        <label for="fish_name">Fish Name:</label>
+        <input type="text" name="fish_name" id="fish_name" required>
+        <label for="fish_price">Price:</label>
+        <input type="number" name="fish_price" id="fish_price" required>
+        <label for="fish_quantity">Quantity in kg:</label>
+        <input type="number" name="fish_quantity" id="fish_quantity" required>
+        <button type="submit">Save</button>
+        {% if messages %}
+        <div class="error-message">
+            {% for message in messages %}
+                {{ message }}
+            {% endfor %}
+        </div>
+        {% endif %}
+    </form>
+</div>
+</body>
+</html>
+{% endblock body %}

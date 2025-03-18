@@ -1,0 +1,101 @@
+{% extends "user_dashboard.html" %}
+{% block body %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+   
+    <style>
+        /* Container styles */
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #e0f2f1; /* Updated background color */
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Add box shadow */
+        }
+
+        /* Heading styles */
+        h2 {
+            color: #004d40; /* Updated heading color */
+            margin-bottom: 20px;
+        }
+
+        /* Button styles */
+        .button-container button {
+            background-color: #00796b; /* Updated button background color */
+            color: #fff; /* Text color */
+            border: none;
+            border-radius: 5px;
+            padding: 10px 20px;
+            cursor: pointer;
+            transition: background-color 0.3s ease, color 0.3s ease; /* Add transition effect */
+        }
+
+        .button-container button:hover {
+            background-color: #004d40; /* Change button background color on hover */
+        }
+
+        .button-container button:active {
+            background-color: #00251a; /* Change button background color when clicked */
+        }
+
+        /* Table styles */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px; /* Add margin at the top of the table */
+        }
+
+        th {
+            background-color: #00796b; /* Set table header background color */
+            color: #fff;
+        }
+
+        th, td {
+            border: 1px solid #009688; /* Updated table border color */
+            padding: 10px;
+            text-align: left;
+        }
+
+        .otherpage {
+            width: 100%;
+            height: 300px;
+        }
+    </style>
+
+</head>
+<body>
+    <div class="container">
+        <h2>Admin Dashboard</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Fish Name</th>
+                    <th>Fish Price</th>
+                    <th>Fish Quantity</th>
+                    <th>Date</th>
+                    <th>Order</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% if fishes %}
+                {% for fish in fishes %}
+                <tr>
+                    <td>{{ fish.fish_name }}</td>
+                    <td>{{ fish.fish_price }}</td>
+                    <td>{{ fish.fish_quantity }}</td>
+                    <td>{{ fish.date }}</td>
+                    <td class="button-container"><button><a href="{% url "order" fish_id=fish.fish_id %}" style="color: #fff; text-decoration: none;">Order</a></button></td>
+                </tr>
+                {% endfor %}
+                {% endif %}
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>
+{% endblock %}

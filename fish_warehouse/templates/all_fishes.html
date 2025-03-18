@@ -1,0 +1,141 @@
+{% extends "admin_dashboard.html" %}
+{% block body %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+   
+    <style>
+        
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f2f2f2;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+h2 {
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.button-container {
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+button.delete-button {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #f44336; /* Red */
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-right: 10px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    text-decoration: none; /* Remove underline */
+}
+
+button.delete-button:hover {
+    background-color: #d32f2f; /* Darker red */
+}
+
+button.update-button {
+    display: inline-block;
+    padding: 10px 20px;
+    /*background-color: #58e3ce; */ /* Greenish blue */
+    background-color: aquamarine;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-right: 10px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    text-decoration: none; /* Remove underline */
+}
+
+button.update-button:hover {
+    background-color: #4db8ab; /* Darker greenish blue */
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th, td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: left;
+}
+
+th {
+    background-color: #58e3ce;
+    color: #fff;
+}
+
+.otherpage {
+    width: 100%;
+    height: 300px;
+}
+
+.update-button a {
+    text-decoration: none; /* Remove underline from the link inside the update button */
+}
+    </style>
+
+</head>
+<body>
+    <div class="container">
+        <table>
+            <thead>
+                <tr>
+                    <th>Fish Name</th>
+                    <th>Fish Price</th>
+                    <th>Fish Quantity (KG)</th>
+                    <th>Date</th>
+                    <th>Delete</th>
+                    <th>Update</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% if fishes %}
+                    {% for fish in fishes %}
+                        <tr>
+                            <td>{{ fish.fish_name }}</td>
+                            <td>{{ fish.fish_price }}</td>
+                            <td>{{ fish.fish_quantity }}</td>
+                            <td>{{ fish.date }}</td>
+                            <td>
+                                <form method="POST">
+                                    {% csrf_token %}
+                                    <input type="hidden" name="fish_id" value="{{ fish.fish_id }}">
+                                    <button class="delete-button" type="submit">Delete</button>
+                                </form>
+                            </td>
+                            <td>
+                                <button class="update-button">
+                                    <a href={% url "edit_fish" fish_name=fish.fish_name %}>Update</a>
+                                </button>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                {% endif %}
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>
+{% endblock body %}

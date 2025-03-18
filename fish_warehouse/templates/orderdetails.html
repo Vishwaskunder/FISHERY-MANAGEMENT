@@ -1,0 +1,68 @@
+{% extends "admin_dashboard.html" %}
+{% block body %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Details</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            margin: 0;
+            padding: 20px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+
+        th {
+            background-color:#58e3ce;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        tr:hover {
+            background-color: #ddd;
+        }
+    </style>
+</head>
+<body>
+    <table>
+        <thead>
+            <tr>
+                <th>Buyers Name</th>
+                <th>Fish Name</th>
+                <th>Date of Order</th>
+                <th>Quantity Ordered (KG)</th>
+                <th>Total Amount Paid</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for order in orders %}
+              
+            <tr>
+                <td>{{ order.ordered_by.username }}</td>
+                <td>{{ order.fish.fish_name }}</td>
+                <td>{{ order.date }}</td>
+                <td>{{ order.quantity }}</td>
+                <td>{{ order.total }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>
+{% endblock body %}

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employee Profile</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+            position: relative; /* Set position relative for absolute positioning of back button */
+        }
+        .header {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 20px 0; /* Increased padding */
+            margin-bottom: 20px;
+        }
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 500px;
+            max-width: 90%;
+            background-color: #fff;
+            margin: auto; /* To center horizontally */
+        }
+        label {
+            display: block;
+            margin-bottom: 10px;
+        }
+        input[type="text"],
+        input[type="number"],
+        input[type="email"] {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+        .back-button {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            background-color: #008CBA;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+        }
+        @media only screen and (max-width: 600px) {
+            .container {
+                width: 90%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <a href="{% url 'admin_dashboard_2' %}" class="back-button">Back</a>
+    <div class="header">
+        <h2>Fish Details</h2>
+    </div> 
+    <div class="container">
+        <form method="post">
+            <!-- {% csrf_token %} -->
+            {% for fish in fishes %}
+            {% if fish %}
+            <input type="hidden" name="fish_name" value={{ fish.fish_name }}>
+        <label for="fishname">Fish Name:</label>
+        <input type="text" name="fish_name" id="fish_name" value={{ fish.fish_name }}  required>
+        <label for="fish_price">Price:</label>
+        <input type="number" name="fish_price" id="fish_price" value={{ fish.fish_price }} required>
+        <label for="fish_quantity">Quantity in kg:</label>
+        <input type="number" name="fish_quantity" id="fish_quantity" value={{ fish.fish_quantity }} required>
+        
+            {% endif %}
+            {% endfor %}
+        </form>
+    </div>
+</body>
+</html>

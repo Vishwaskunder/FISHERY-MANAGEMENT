@@ -1,0 +1,79 @@
+{% extends "user_dashboard.html" %}
+{% block body %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Fish</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            margin: 0;
+            padding: 20px;
+        }
+
+        form {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            max-width: 400px;
+            margin: 0 auto;
+        }
+
+        label {
+            margin-top: 10px;
+            display: block;
+        }
+
+        input[type="text"],
+        input[type="number"],
+        input[type="submit"] {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+
+        input[type="submit"] {
+            background-color: #58e3ce;
+            color: white;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #4db8ab;
+        }
+
+        /* Styling for table heading */
+        th {
+            background-color: #5bc0de; /* Greenish-blue color */
+            color: white; /* White text color */
+            padding: 10px; /* Increased padding for better visual */
+        }
+    </style>
+</head>
+<body>
+    <form action="" method="POST">
+        {% csrf_token %}
+        <label for="fish_name">Fish Name:</label>
+        <input type="text" name="fish_name" id="fish_name" value="{{ fish.fish_name }}" readonly>
+        <label for="available_quantity">Available Quantity in kg</label>
+        <input type="number" name="available_quantity" id="available_quantity" value="{{ fish.fish_quantity }}" readonly>
+        <label for="price">Price:</label>
+        <input type="number" name="price" id="price" value="{{ fish.fish_price }}" readonly>
+        <label for="quantity_to_order">Quantity to Order:</label>
+        <input type="number" name="qty" id="qty" min="1" max="{{ fish.fish_quantity }}" required>
+        <input type="submit" value="Order">
+    </form>
+</body>
+</html>
+{% endblock body %}

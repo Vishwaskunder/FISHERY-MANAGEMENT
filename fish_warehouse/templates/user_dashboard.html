@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Available Fish</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+        }
+
+        .main {
+            margin: 0 auto;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+
+        .heading {
+            background-color: #111;
+            color: #fff;
+            padding: 10px 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+
+        .work-area {
+            width: calc(100% - 40px);
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        footer {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 10px 0;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+
+        img {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+        }
+
+        @media screen and (max-height: 450px) {
+            .sidenav {
+                padding-top: 15px;
+            }
+
+            .sidenav a {
+                font-size: 18px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="main">
+        <div class="heading">
+            <h1>Available Fish</h1>
+        </div>
+        <div class="work-area">
+            {% block body %}
+            {% endblock body %}
+        </div>
+    </div>
+
+    <footer>
+        Developed by WOLF COMMUNITY
+        <img src="/static/img/wolf2.jpg" alt="WOLF">
+    </footer>
+</body>
+</html>

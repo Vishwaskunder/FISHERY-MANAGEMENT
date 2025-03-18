@@ -1,0 +1,101 @@
+{% extends "admin_dashboard.html" %}
+{% block body %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fish Warehouse</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 20px 0; /* Increased padding */
+            width: 100%;
+           
+            margin-bottom: 20px; /* Added margin for space */
+        }
+
+        header h1 {
+            font-size: 2em; /* Increased font size */
+            margin: 0;
+            margin-right: 100px;
+        }
+
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center; /* Center align items */
+            padding: 10px;
+            max-width: 800px;
+            margin: 0 auto; /* Center container horizontally */
+        }
+
+        .right-side {
+            flex: 0 0 100%; /* Set width to 100% */
+            max-width: 100%; /* Set maximum width */
+            text-align: center; /* Center align text */
+        }
+
+        .about-section {
+            background-color: #f2f2f2;
+            padding: 20px; /* Increased padding */
+            border-radius: 10px;
+            margin-bottom: 20px; /* Added margin for space */
+            text-align: center; /* Center align text */
+        }
+
+        .about-section h2 {
+            color: #333;
+            font-size: 1.5em; /* Increased font size */
+            margin-bottom: 10px; /* Adjusted margin */
+        }
+
+        .about-section p {
+            color: #555;
+            font-size: 1em; /* Adjusted font size */
+        }
+
+        .bottom-images {
+            display: flex;
+            justify-content: space-between;
+            padding: 0 10px;
+        }
+
+        .bottom-images img {
+            width: calc(30% - 10px); /* Adjusted width for responsive layout */
+            height: 250px; /* Increased height of images */
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>FISHERY MANAGEMENT</h1>
+    </header>
+
+    <div class="container">
+        <div class="right-side">
+            <div class="about-section">
+                
+                <p>Welcome to Fishery Menagement , your ultimate destination for high-quality and fresh fish. We pride ourselves on sourcing the best fish from around the world and delivering it right to your doorstep. Whether you're a seafood enthusiast or just looking to enjoy a delicious meal, we have something for everyone.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="bottom-images">
+            <img src="/static/img/fish4.jpg" alt="Fish Image 4">
+            <img src="/static/img/fish5.jpg" alt="Fish Image 5">
+            <img src="/static/img/fish6.jpg" alt="Fish Image 6">
+        </div>
+    </div>
+</body>
+</html>
+{% endblock body %}

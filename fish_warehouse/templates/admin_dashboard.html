@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        .sidenav {
+            height: 100%;
+            width: 250px;
+            position: fixed;
+            z-index: 1;
+            top: 0;
+            left: 0;
+            background-color: #111;
+            overflow-y: auto; /* Added scrollbar for vertical overflow */
+            padding-top: 20px;
+            display: flex;
+            flex-direction: column;
+            max-width: 250px; /* Set max width for the sidebar */
+        }
+
+        .sidenav a {
+            padding: 6px 8px 6px 16px;
+            text-decoration: none;
+            font-size: 20px;
+            color: #faf6f6;
+            display: block;
+        }
+
+        .sidenav a:hover {
+            color:  #58e3ce;
+        }
+
+        .sidenav .e,
+        .sidenav .f {
+            max-height: 300px; /* Set max height for div e and div f */
+            overflow-y: auto; /* Add scrollbar for vertical overflow */
+        }
+
+        .main {
+            margin-left: 250px;
+            padding: 0px 10px;
+            display: flex;
+            flex-direction: column;
+            align-items: center; /* Center align contents */
+            justify-content: center; /* Center align contents */
+        }
+
+        .text-area {
+            margin-top: 100px;
+            padding: 30px;
+            width: 70%;
+            height: 80%;
+            border: #111;
+            background-image: url('C:\Users\Lenovo\Downloads\pexels-jplenio-2850287.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+
+        .topnav {
+            position: fixed; /* Fix the top navigation bar at the top */
+            top: 0;
+            width: 1200px;
+            background-color: #333;
+            overflow: hidden;
+            display: flex;
+            justify-content: center; /* Align content to the right */
+            padding-right: 10px; /* Add padding to separate from the right edge */
+            margin: 0; /* Remove default margin */
+        }
+
+        .topnav a {
+            left: 0px;
+            color: #f2f2f2;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+            font-size: 17px;
+            margin-left: 10px; /* Add margin between links */
+            transition: background-color 0.3s; /* Smooth transition for background color change */
+        }
+
+        .topnav a:hover {
+            background-color: #58e3ce; /* Change background color on hover */
+        }
+
+        .topnav a.active {
+            background-color: #58e3ce;
+            color: white;
+        }
+
+        footer {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 10px 0;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+        }
+
+        img {
+            width: 3cap;
+            height: 25px;
+            border-radius: 50%;
+        }
+
+        .work-area {
+            width: calc(100% - 250px); /* Adjust width to fill remaining space */
+         /* Match margin-left with sidebar width */
+            margin-top: 60px; /* Add margin to separate from top */
+            padding: 20px; /* Add padding for content inside */
+        }
+
+        @media screen and (max-height: 450px) {
+            .sidenav {
+                padding-top: 15px;
+            }
+
+            .sidenav a {
+                font-size: 18px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="sidenav">
+      <a href="#" >*****Fishes*****</a>
+        <div class="f">
+            {% csrf_token %}
+            {% if fishes %}
+            {% for fish in fishes %}
+            <a href="{% url 'view_profile_fish' fish_name=fish.fish_name %}">{{fish.fish_name}}</a>
+            {% endfor %}
+            {% endif %}
+        </div>
+        <a href="#">******Buyers****</a>
+        <div class="e">
+         
+            {% csrf_token %}
+            {% if users %}
+            {% for user in users %}
+            <a href="{% url 'view_profile' id=user.id %}">{{ user }}</a>
+            {% endfor %}
+            {% endif %}
+
+
+        </div>
+    </div>
+
+    <div class="main">
+        <div class="topnav">
+            <a href="{% url 'home_warehouse'%}">Home</a>
+            <a href="{% url 'add_fish' %}">ADD FISH</a>
+            <a href="{% url 'add_users' %}">ADD BUYER</a>
+            <a href="{% url 'fishes' %}">VIEW FISH DETAILS</a>
+            <a href="{% url 'view_users' %}">VIEW BUYERS</a>
+            <a href="{% url 'orderdetails' %}"> ORDER DETAILS</a>
+        </div>
+        <div class="work-area">
+          {% block body %}
+          {% endblock body %}
+        </div>
+    </div>
+
+    <footer>
+        developed by WOLF COMMUNITY
+        <img src="/static/img/wolf2.jpg" alt="WOLF">
+    </footer>
+</body>
+</html>

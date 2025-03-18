@@ -1,0 +1,98 @@
+{% extends "admin_dashboard.html" %}
+{% block body %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Users</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f7f7f7;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        form {
+            background-color: #ffffff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 500px;
+            max-width: 90%;
+        }
+        h2 {
+            text-align: center;
+            color: #333333;
+        }
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #555555;
+        }
+        input[type="text"],
+        input[type="email"],
+        input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #cccccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+        button[type="submit"] {
+            background-color:  #58e3ce;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+            display: block;
+            font-size: 16px;
+        }
+        button[type="submit"]:hover {
+            background-color: #58e3ce;
+        }
+        .error-message {
+            color: #f44336;
+            text-align: center;
+            margin-top: 10px;
+        }
+        @media only screen and (max-width: 600px) {
+            form {
+                width: 90%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <form method="post">
+        {% csrf_token %}
+        <h2>Add Buyers Details</h2>
+        {% if messages %}
+        <div class="error-message">
+            {% for message in messages %}
+                {{ message }}
+            {% endfor %}
+        </div>
+        {% endif %}
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required>
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required>
+        <label for="pass1">Password:</label>
+        <input type="password" id="pass1" name="pass1" required>
+        <label for="pass2">Confirm Password:</label>
+        <input type="password" id="pass2" name="pass2" required>
+        <label for="phonenumber">Phone Number:</label>
+        <input type="text" id="phonenumber" name="phonenumber" required>
+        <button type="submit">Register</button> 
+    </form>
+</body>
+</html>
+{% endblock body %}
